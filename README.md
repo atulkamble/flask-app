@@ -3,6 +3,20 @@
 **Updated:** 21 November 2026  
 **Purpose:** Learn how to run a Flask application locally, package it as a Docker image, publish it to Docker Hub or Azure Container Registry (ACR), and deploy it to Azure Kubernetes Service (AKS).
 
+## Diagrams
+
+### Application architecture
+
+![Flask application architecture](docs/architecture.mmd)
+
+Source: [architecture diagram](docs/architecture.mmd).
+
+### Build and deployment flow
+
+![Container build and deployment flow](docs/deployment-flow.mmd)
+
+Source: [deployment flow diagram](docs/deployment-flow.mmd).
+
 ## Concepts
 
 | Term | Meaning |
