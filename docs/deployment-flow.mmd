@@ -1,0 +1,15 @@
+flowchart TD
+    A[Clone repository] --> B[Install dependencies]
+    B --> C{Choose run target}
+    C -->|Local| D[Run Flask with Python]
+    D --> E[Open localhost:5000]
+    C -->|Docker| F[Build Docker image]
+    F --> G{Choose image registry}
+    G -->|Docker Hub| H[Tag and push image]
+    G -->|Azure| I[Build and push to ACR]
+    H --> J[Run container locally or deploy]
+    I --> K[Grant AKS access to ACR]
+    K --> L[Apply Kubernetes Deployment and Service]
+    L --> M[AKS pulls image and starts Pod]
+    M --> N[LoadBalancer exposes application]
+    N --> O[Open external IP and verify]
