@@ -1,0 +1,23 @@
+flowchart LR
+    User[User browser] -->|HTTP request| Service
+    subgraph Local["Local development"]
+      Service[localhost:5000]
+      Service --> Flask[Flask application]
+    end
+    subgraph Container["Docker runtime"]
+      Host[Host port 5000] -->|port mapping| ContainerPort[Container port 5000]
+      ContainerPort --> FlaskImage[Flask container]
+    end
+    subgraph Azure["Azure deployment"]
+      Browser[User browser] -->|HTTP| LB[AKS LoadBalancer Service]
+      LB --> Pod[Flask Pod]
+      Pod --> Image[Container image]
+      Image --> ACR[Azure Container Registry]
+      Pod -. image pull .-> ACR
+      Cluster[AKS cluster] --> Pod
+    end
+    Source[Python source + requirements] --> Build[Docker build]
+    Dockerfile[Dockerfile] --> Build
+    Build --> FlaskImage
+    Build --> Registry[Docker Hub or ACR]
+    Registry -->|pull image| Pod
